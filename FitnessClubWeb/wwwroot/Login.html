@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Регистрация/вход</title>
+    <style>
+        .msg-error {
+            color: red;
+        }
+
+        button {
+            margin-top: 5px;
+        }
+
+        .center {
+            text-align: center;
+            align-content: center;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Фитнес-клуб</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Clients.html">Клиенты</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a id="LogIn" class="btn btn-outline-success mr-sm-2" href="Login.html">Войти</a>
+                </li>
+                <li class="nav-item">
+                    <a id="SignIn" class="btn btn-primary" href="Register.html">Зарегистироваться</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <br /><br />
+        <div class="row">
+            <h2 class="col-6 offset-3 center">Вход</h2>
+            <div class="msg-error col-6 offset-3 center">
+                <div id="msg"></div>
+                <ul id="formError"></ul>
+            </div>
+            <form class="col-6 offset-3 center">
+                <label for="Email">Email: </label>
+                <br />
+                <input type="text" class="form-control" id="Email" name="email">
+                <br />
+                <label for="Password">Пароль: </label>
+                <br />
+                <input type="password" class="form-control" id="Password" name="password">
+            </form>
+            <div class="col-6 offset-3 center">
+                <br /><br />
+                <button id="loginBtn" class="btn btn-primary col-5" onclick="logIn()">Войти</button>
+                <button id="logoffBtn" class="btn btn-secondary col-5" onclick="logOff()">Выйти</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/register.js"></script>
+</body>
+</html>

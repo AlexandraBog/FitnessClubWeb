@@ -1,0 +1,107 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Клиенты</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body onload="loadClients();">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Фитнес-клуб</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="Clients.html">Клиенты</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a id="LogIn" class="btn btn-outline-success mr-sm-2" href="Login.html">Войти</a>
+                </li>
+                <li class="nav-item">
+                    <a id="SignIn" class="btn btn-primary" href="Register.html">Зарегистироваться</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div>
+            <br />
+            <h2>Список клиентов</h2>
+            <div id="actionMsg" class="msgClass"></div>
+            <div class="row">
+                <div id="clientsDiv" class="col-12"></div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="clientInfoModal" tabindex="-1" role="dialog" aria-labelledby="clientInfoModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="clientInfoModalTitle">Информация о клиенте</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="modal-fio">ФИО</label>
+                    <p id="modal-fio"></p>
+                    <label for="modal-birthDay">Дата рождения</label>
+                    <p id="modal-birthDay"></p>
+                    <hr />
+                    <label>Абонемент</label>
+                    <br />
+                    <label for="modal-startDate">Дата начала</label>
+                    <p id="modal-startDate"></p>
+                    <label for="modal-endDate">Дата окончания</label>
+                    <p id="modal-endDate"></p>
+                    <label for="modal-price">Цена</label>
+                    <p id="modal-price"></p>
+                    <hr />
+                    <label>Посещения</label>
+                    <div id="visitingsInfo"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ок</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Edit modal-->
+    <div class="modal fade" id="clientEditModal" tabindex="-1" role="dialog" aria-labelledby="clientEditModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="clientEditModalTitle">Изменение данных о клиенте</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="edit-modal-fio">ФИО</label>
+                    <input id="edit-modal-fio" class="form-control" type="text" placeholder="Ф.И.О." required>
+                    <label for="edit-modal-birthDay">Дата рождения</label>
+                    <input id="edit-modal-birthDay" class="form-control" type="date" placeholder="Дата рождения" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/js/scripts.js"></script>
+</body>
+</html>
