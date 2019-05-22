@@ -2,6 +2,9 @@
 
 namespace FitnessClubWeb.Models
 {
+    /// <summary>
+    /// класс, который содержит данные о зарегестрированном пользователе 
+    /// </summary>
     public class RegisterViewModel
     {
         [Required]

@@ -7,6 +7,9 @@ namespace FitnessClubWeb.Models
     [Table("Visiting")]
     public partial class Visiting
     {
+        /// <summary>
+        /// класс, который хранит информацию о посещени€х
+        /// </summary>
         public int ID { get; set; }
 
         [Column(TypeName = "datetime")]

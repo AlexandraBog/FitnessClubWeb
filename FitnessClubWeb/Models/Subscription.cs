@@ -9,6 +9,9 @@ namespace FitnessClubWeb.Models
     [Table("Subscription")]
     public partial class Subscription
     {
+        /// <summary>
+        /// класс, который хранит в себе данные об абонементе 
+        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Subscription()
         {

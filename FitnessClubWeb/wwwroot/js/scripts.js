@@ -2,9 +2,32 @@
 const uri = "/api/clients/";
 let items = null;
 
+
+function isAuthenticated() {
+    var request = new XMLHttpRequest();
+    var role = "";
+    request.open("GET", "/api/Account/userRole", false);
+    request.onload = function () {
+        role = request.response;
+    }
+    request.send();
+
+    if (role !== "" && role !== "udentified") {
+        document.getElementById("LogIn").innerText = "Выйти";
+    }
+    else {
+        document.getElementById("LogIn").innerText = "Войти";
+    }
+    return role;
+}
+
 function loadClients() {
     var i, x = "";
+    var role;
     var request = new XMLHttpRequest();
+
+    var role = isAuthenticated();
+
     request.open("GET", uri, false);
     request.onload = function () {
         items = JSON.parse(request.responseText);
@@ -13,14 +36,16 @@ function loadClients() {
             x += "<div class='row'>";
             x += "<h4 class='col-5'>" + items[i].fio + "</h4>";
             x += "<button type='button' class='col-2 btn btn-sm btn-outline-secondary' data-toggle='modal' data-target='#clientInfoModal' onclick='loadClientInfo(" + items[i].id + ");'> Посмотреть </button>";
-            x += "<button type='button' class='col-2 btn btn-sm btn-outline-primary' data-toggle='modal' data-target='#clientEditModal' onclick='loadClientEditInfo(" + items[i].id + ");'> Изменить </button>";
-            x += "<button type='button' class='col-2 btn btn-sm btn-outline-secondary' onclick='deleteClient(" + items[i].id + ");'>Удалить</button>";
-            x += "</div><br />";
-            x += "<div class='row'>";
-            x += "<button type='button' class='col-4 btn btn-sm btn-outline-secondary' onclick='editClient(" + items[i].id + ");'>Применить изменения</button>";
-            x += "<button id='markClient" + items[i].id + "' type='button' class='col-2 offset-1 btn btn-sm btn-success' onclick='markClient(" + items[i].id + ");'>Отметить приход</button>";
-            x += "<button id='unmarkClient" + items[i].id + "' type='button' class='col-2 btn btn-sm btn-warning' onclick='unmarkClient(" + items[i].id + ");'>Отметить уход</button>";
-            x += "</div>";
+            if (role == '"admin"') {
+                x += "<button type='button' class='col-2 btn btn-sm btn-outline-primary' data-toggle='modal' data-target='#clientEditModal' onclick='loadClientEditInfo(" + items[i].id + ");'> Изменить </button>";
+                x += "<button type='button' class='col-2 btn btn-sm btn-outline-secondary' onclick='deleteClient(" + items[i].id + ");'>Удалить</button>";
+                x += "</div><br />";
+                x += "<div class='row'>";
+                x += "<button type='button' class='col-4 btn btn-sm btn-outline-secondary' onclick='editClient(" + items[i].id + ");'>Применить изменения</button>";
+                x += "<button id='markClient" + items[i].id + "' type='button' class='col-2 offset-1 btn btn-sm btn-success' onclick='markClient(" + items[i].id + ");'>Отметить приход</button>";
+                x += "<button id='unmarkClient" + items[i].id + "' type='button' class='col-2 btn btn-sm btn-warning' onclick='unmarkClient(" + items[i].id + ");'>Отметить уход</button>";
+            }
+                x += "</div>";
         }
         document.getElementById("clientsDiv").innerHTML = x;
     };

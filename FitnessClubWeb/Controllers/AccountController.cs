@@ -8,8 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace FitnessClubWeb.Controllers
 {
     [Produces("application/json")]
+
     public class AccountController : Controller
     {
+        /// <summary>
+        /// класс для входа и авторизиции пользователя
+        /// </summary>
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
 
@@ -18,31 +22,36 @@ namespace FitnessClubWeb.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-
+        /// <summary>
+        /// функция, для регистрации пользователя
+        /// </summary>
+        /// <param name="model">объект, который содержить в себе регистрационные данные пользователя</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/account/register")]
-        public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
+        public async Task<IActionResult> Register([FromBody] RegisterViewModel model) 
         {
+            
             if (ModelState.IsValid)
             {
                 User user = new User
                 {
                     Email = model.Email,
-                    UserName = model.Email,
+                    UserName = model.Email,                  
                 };
                 IdentityResult result = new IdentityResult();
                 try
                 {
-                    result = await this.userManager.CreateAsync(user, model.Password);
+                    result = await this.userManager.CreateAsync(user, model.Password);  // записывается результат регистрации пользователя
                 }
-                catch (Exception e)
+                catch(Exception e)
                 {
-                    return Ok(e);
+                    return BadRequest(e); // возвращает результат ошибку
                 }
 
                 if (result.Succeeded)
                 {
-                    await this.signInManager.SignInAsync(user, false);
+                    await this.signInManager.SignInAsync(user, false);   // авторизует пользователя
                     await this.userManager.AddToRoleAsync(user, "user");
 
                     var message = new
@@ -62,7 +71,7 @@ namespace FitnessClubWeb.Controllers
                         message = "Пользователь не добавлен.",
                         error = ModelState.Values.SelectMany(e => e.Errors.Select(er => er.ErrorMessage))
                     };
-                    return Ok(errorMsg);
+                    return Ok(errorMsg); // возвращает все возможные ошибки
                 }
             }
             else
@@ -81,7 +90,7 @@ namespace FitnessClubWeb.Controllers
         [Route("api/account/login")]
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
-        {
+        {             
             if (ModelState.IsValid)
             {
                 var result = await this.signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
@@ -128,6 +137,7 @@ namespace FitnessClubWeb.Controllers
             };
             return Ok(msg);
         }
+
         [HttpPost]
         [Route("api/Account/isAuthenticated")]
         //[ValidateAntiForgeryToken]
@@ -143,6 +153,24 @@ namespace FitnessClubWeb.Controllers
 
             return Ok(msg);
         }
+
+        [HttpGet]
+        [Route("api/Account/userRole")]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> GetUserRole()
+        {
+            User user = await GetCurrentUserAsync();
+
+            if(user == null)
+            {
+                return BadRequest();
+            }
+
+            var roles = await this.userManager.GetRolesAsync(user);
+
+            return Ok(roles.FirstOrDefault());
+        }
+
         private Task<User> GetCurrentUserAsync() => this.userManager.GetUserAsync(HttpContext.User);
     }
 }

@@ -54,7 +54,7 @@ namespace FitnessClubWeb.Controllers
             {
                 return BadRequest(ModelState);
             }
-            
+
             context.Clients.Add(client);
             await context.SaveChangesAsync();
             return CreatedAtAction("GetClient", new { id = client.ID }, client);
@@ -135,7 +135,7 @@ namespace FitnessClubWeb.Controllers
             {
                 await context.SaveChangesAsync();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }

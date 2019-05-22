@@ -2,6 +2,9 @@
 
 namespace FitnessClubWeb.Models
 {
+    /// <summary>
+    /// класс, который содержит данные пользователя, вошедшего на сайт
+    /// </summary>
     public class LoginViewModel
     {
         [Required]

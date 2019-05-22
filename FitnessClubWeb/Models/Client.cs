@@ -9,10 +9,13 @@ namespace FitnessClubWeb.Models
     [Table("Client")]
     public partial class Client
     {
+        /// <summary>
+        /// класс, который хранит в себе данные о клиенте
+        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Client()
         {
-            Visitings = new HashSet<Visiting>();
+            Visitings = new HashSet<Visiting>();  //инициализация списка посещений
         }
 
         public int ID { get; set; }
